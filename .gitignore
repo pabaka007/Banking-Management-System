@@ -8,3 +8,4 @@ data/
 .project
 .settings/
 allure-results/
+.allure/
