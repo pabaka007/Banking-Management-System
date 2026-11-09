@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- Browser suite: Selenium + Page Object Model. Classes run in parallel, one Chrome per thread. -->
+<suite name="Banking - Web UI" verbose="1" parallel="classes" thread-count="2">
+    <test name="Web UI">
+        <packages>
+            <package name="com.pabaka.bank.ui.tests"/>
+        </packages>
+    </test>
+</suite>

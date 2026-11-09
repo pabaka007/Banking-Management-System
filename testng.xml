@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- Fast feedback suite: service-layer + REST API tests (no browser needed). -->
+<suite name="Banking - Unit and API" verbose="1">
+    <test name="Service layer">
+        <packages>
+            <package name="com.pabaka.bank.unit"/>
+        </packages>
+    </test>
+    <test name="REST API">
+        <packages>
+            <package name="com.pabaka.bank.api"/>
+        </packages>
+    </test>
+</suite>

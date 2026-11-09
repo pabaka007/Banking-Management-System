@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PB Bank · Banking Management System</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="logo">PB</span> Bank</div>
+    <div id="user-box" class="user-box" hidden>
+      <span>Hi, <strong id="user-name" data-testid="user-name"></strong></span>
+      <button id="logout-btn" class="btn ghost" data-testid="logout-btn">Log out</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= AUTH ================= -->
+    <section id="auth-view" class="card auth" data-testid="auth-view">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="login" data-testid="tab-login" role="tab">Log in</button>
+        <button class="tab" data-tab="register" data-testid="tab-register" role="tab">Register</button>
+      </div>
+
+      <form id="login-form" data-testid="login-form" novalidate>
+        <label>Username <input name="username" data-testid="login-username" autocomplete="username" required /></label>
+        <label>Password <input name="password" type="password" data-testid="login-password" autocomplete="current-password" required /></label>
+        <button class="btn" type="submit" data-testid="login-submit">Log in</button>
+        <p class="hint">Demo account: <code>demo</code> / <code>Demo@1234</code></p>
+      </form>
+
+      <form id="register-form" data-testid="register-form" hidden novalidate>
+        <label>Full name <input name="fullName" data-testid="register-fullname" required /></label>
+        <label>Username <input name="username" data-testid="register-username" autocomplete="username" required /></label>
+        <label>Password <input name="password" type="password" data-testid="register-password" autocomplete="new-password" required /></label>
+        <p class="hint">8+ characters with at least one letter and one digit.</p>
+        <button class="btn" type="submit" data-testid="register-submit">Create account</button>
+      </form>
+    </section>
+
+    <!-- ================= DASHBOARD ================= -->
+    <section id="dash-view" data-testid="dashboard" hidden>
+      <div class="summary card">
+        <div>
+          <p class="muted">Total balance</p>
+          <p class="big" id="total-balance" data-testid="total-balance">₹0.00</p>
+        </div>
+        <form id="open-form" class="inline" data-testid="open-account-form">
+          <select name="type" data-testid="open-account-type">
+            <option value="SAVINGS">Savings</option>
+            <option value="CURRENT">Current</option>
+          </select>
+          <button class="btn ghost" type="submit" data-testid="open-account-submit">+ Open account</button>
+        </form>
+      </div>
+
+      <div id="accounts" class="accounts" data-testid="accounts"></div>
+
+      <div class="grid">
+        <form id="money-form" class="card" data-testid="money-form">
+          <h2>Deposit / Withdraw</h2>
+          <label>Account <select name="account" data-testid="money-account"></select></label>
+          <label>Amount (₹) <input name="amount" inputmode="decimal" data-testid="money-amount" /></label>
+          <div class="row">
+            <button class="btn" type="submit" value="deposit" data-testid="deposit-btn">Deposit</button>
+            <button class="btn ghost" type="submit" value="withdraw" data-testid="withdraw-btn">Withdraw</button>
+          </div>
+        </form>
+
+        <form id="transfer-form" class="card" data-testid="transfer-form">
+          <h2>Transfer</h2>
+          <label>From <select name="from" data-testid="transfer-from"></select></label>
+          <label>To account number <input name="to" placeholder="PB0000000000" data-testid="transfer-to" /></label>
+          <label>Amount (₹) <input name="amount" inputmode="decimal" data-testid="transfer-amount" /></label>
+          <label>Note (optional) <input name="note" maxlength="100" data-testid="transfer-note" /></label>
+          <button class="btn" type="submit" data-testid="transfer-submit">Send money</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="row between">
+          <h2>Transactions</h2>
+          <select id="history-account" data-testid="history-account"></select>
+        </div>
+        <table class="history">
+          <thead><tr><th>Date</th><th>Type</th><th>Details</th><th class="r">Amount</th><th class="r">Balance</th></tr></thead>
+          <tbody id="history" data-testid="history-rows"></tbody>
+        </table>
+        <p id="history-empty" class="muted" data-testid="history-empty" hidden>No transactions yet.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" data-testid="toast" hidden></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
